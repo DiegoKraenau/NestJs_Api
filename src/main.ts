@@ -8,7 +8,7 @@ async function bootstrap() {
 
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,
+      whitelist: true, //Validate body if accept any other field in json
     }),
   );
 

@@ -1,0 +1,3 @@
+class-validators
+swagger -> mapper-types (https://docs.nestjs.com/openapi/introduction # no Funciono
+mapper-types -> nestjs # si Funciono
