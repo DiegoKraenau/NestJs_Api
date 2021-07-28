@@ -1,3 +1,15 @@
 class-validators
 swagger -> mapper-types (https://docs.nestjs.com/openapi/introduction # no Funciono
 mapper-types -> nestjs # si Funciono
+npm install --save @nestjs/typeorm typeorm mysql2
+
+docker-compose up #to start the db
+
+docker exec -it myapi_database_1 bash #to see the shell of container
+>mysql -proot $enter mysql inside container ubuntu
+
+##You can install db schema to see the table relationship
+
+
+
+##Repo: https://github.com/ruslanguns/nestjs-myblog/tree/finished
