@@ -1,9 +1,9 @@
 class-validators
-swagger -> mapper-types (https://docs.nestjs.com/openapi/introduction # no Funciono
-mapper-types -> nestjs # si Funciono
+swagger -> mapper-types (https://docs.nestjs.com/openapi/introduction # Si funciono
+mapper-types -> nestjs # No Funciono
 npm install --save @nestjs/typeorm typeorm mysql2
 
-docker-compose up #to start the db
+docker-compose up -d #to start the db (-d to run in background)
 
 docker exec -it myapi_database_1 bash #to see the shell of container
 >mysql -proot $enter mysql inside container ubuntu
@@ -13,3 +13,10 @@ docker exec -it myapi_database_1 bash #to see the shell of container
 
 
 ##Repo: https://github.com/ruslanguns/nestjs-myblog/tree/finished
+
+
+//Commands
+nest g mo ---
+nest g co ---
+nest g s ----
+nest g class user/dtos/createUser.dto --no-spec
