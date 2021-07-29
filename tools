@@ -2,6 +2,7 @@ class-validators
 swagger -> mapper-types (https://docs.nestjs.com/openapi/introduction # Si funciono
 mapper-types -> nestjs # No Funciono
 npm install --save @nestjs/typeorm typeorm mysql2
+npm i @nestjs/config
 
 docker-compose up -d #to start the db (-d to run in background)
 

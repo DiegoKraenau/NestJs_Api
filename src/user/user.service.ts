@@ -1,7 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from './dtos';
+import { CreateUserDto, EditUserDto } from './dtos';
 import { User } from './entities';
 
 @Injectable()
@@ -23,13 +27,26 @@ export class UserService {
   }
 
   async createOne(dto: CreateUserDto) {
+    const userExist = await this.userRepository.findOne({ email: dto.email });
+
+    if (userExist)
+      throw new BadRequestException('User already registered with this email');
+
     const newUser = this.userRepository.create(dto);
-    return await this.userRepository.save(newUser);
+    const user = await this.userRepository.save(newUser);
+    delete user.password;
+    return user;
   }
 
-  async editOne(id: number) {
-    // const user = await this.userRepository.findOne(id);
+  async editOne(id: number, dto: EditUserDto) {
+    const user = await this.userRepository.findOne(id);
+    if (!user) throw new NotFoundException('User does not exist');
+    const editedUser = Object.assign(user, dto);
+    return await this.userRepository.save(editedUser);
   }
 
-  async deleteOne() {}
+  async deleteOne(id: number) {
+    const user = await this.getOne(id);
+    return await this.userRepository.remove(user);
+  }
 }

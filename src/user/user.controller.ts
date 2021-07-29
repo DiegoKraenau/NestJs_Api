@@ -8,7 +8,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { CreateUserDto } from './dtos';
+import { CreateUserDto, EditUserDto } from './dtos';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -18,6 +18,7 @@ export class UserController {
   @Get(':id')
   async getOne(@Param('id', ParseIntPipe) id: number) {
     const data = await this.userService.getOne(id);
+    return data;
   }
 
   @Get()
@@ -38,8 +39,23 @@ export class UserController {
   }
 
   @Put(':id')
-  editOne() {}
+  async editOne(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: EditUserDto,
+  ) {
+    const data = await this.userService.editOne(id, dto);
+    return {
+      message: 'User edited',
+      data,
+    };
+  }
 
   @Delete(':id')
-  deleteOne() {}
+  async deleteOne(@Param('id', ParseIntPipe) id: number) {
+    const data = await this.userService.deleteOne(id);
+    return {
+      message: 'User deleted',
+      data,
+    };
+  }
 }
